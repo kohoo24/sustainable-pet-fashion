@@ -8,102 +8,121 @@ import { Badge } from "../ui/badge";
 
 const designs = [
   {
-    id: 1,
-    name: "캐주얼 컬렉션",
-    description: "일상적인 산책과 놀이를 위한 편안하고 스타일리시한 디자인",
-    price: 39900,
-    image: "https://picsum.photos/seed/eco-casual/800/800",
-    badge: "신규",
+    image: "https://picsum.photos/seed/ecopet-design1/800/1200",
+    title: "에코 스웨터",
+    category: "스웨터",
+    price: "49,000",
+    tags: ["재활용 원단", "수공예"],
   },
   {
-    id: 2,
-    name: "시그니처 라인",
-    description: "특별한 날을 위한 프리미엄 친환경 디자인",
-    price: 49900,
-    image: "https://picsum.photos/seed/eco-signature/800/800",
-    badge: "인기",
+    image: "https://picsum.photos/seed/ecopet-design2/800/1200",
+    title: "오가닉 레인코트",
+    category: "아우터",
+    price: "59,000",
+    tags: ["유기농 면", "방수"],
   },
   {
-    id: 3,
-    name: "아웃도어 시리즈",
-    description: "자연 속 활동을 위한 기능성 디자인",
-    price: 44900,
-    image: "https://picsum.photos/seed/eco-outdoor/800/800",
-    badge: "추천",
-  },
-  {
-    id: 4,
-    name: "홈웨어 컬렉션",
-    description: "실내 생활을 위한 편안하고 세련된 디자인",
-    price: 19900,
-    image: "https://picsum.photos/seed/eco-home/800/800",
-    badge: "베스트",
+    image: "https://picsum.photos/seed/ecopet-design3/800/1200",
+    title: "컴포트 티셔츠",
+    category: "티셔츠",
+    price: "39,000",
+    tags: ["친환경", "통기성"],
   },
 ];
 
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 },
+};
+
 const Designs = () => {
   return (
-    <section id="designs" className="py-20">
-      <div className="container mx-auto px-4">
+    <section className="section-padding relative overflow-hidden">
+      <div className="absolute inset-0 bg-[url('/patterns/grid.svg')] opacity-5" />
+      
+      <div className="container mx-auto container-padding relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-2xl mx-auto mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4 gradient-text">추천 디자인</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            반려동물의 개성과 지구를 생각하는 마음을
+          <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-primary/10 text-primary font-medium">
+            ✨ 트렌디한 디자인
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-text">
+            지속 가능한 스타일
+          </h2>
+          <p className="text-muted-foreground text-lg">
+            환경을 생각하면서도 트렌디한 디자인으로
             <br />
-            담아낸 특별한 디자인을 만나보세요.
+            반려동물의 개성을 살려보세요
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid md:grid-cols-3 gap-8"
+        >
           {designs.map((design, index) => (
             <motion.div
-              key={design.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="bg-card rounded-lg overflow-hidden card-shadow"
+              key={index}
+              variants={item}
+              className="group"
             >
-              <div className="relative h-64">
-                <Image
-                  src={design.image}
-                  alt={design.name}
-                  fill
-                  className="object-cover hover-scale"
-                />
-                <Badge className="absolute top-4 right-4">{design.badge}</Badge>
+              <div className="glass-card overflow-hidden mb-4">
+                <div className="relative h-[400px] transform transition-transform duration-500 group-hover:scale-105">
+                  <Image
+                    src={design.image}
+                    alt={design.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">{design.name}</h3>
-                <p className="text-muted-foreground mb-4">
-                  {design.description}
-                </p>
+              
+              <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-lg font-bold">
-                    {design.price.toLocaleString()}원부터
-                  </span>
-                  <Button size="sm">자세히 보기</Button>
+                  <h3 className="text-xl font-semibold">{design.title}</h3>
+                  <span className="text-primary font-medium">₩{design.price}</span>
+                </div>
+                
+                <div className="flex items-center gap-2">
+                  <Badge variant="secondary">{design.category}</Badge>
+                  {design.tags.map((tag, tagIndex) => (
+                    <Badge key={tagIndex} variant="outline">
+                      {tag}
+                    </Badge>
+                  ))}
                 </div>
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
           className="text-center mt-12"
         >
           <Button size="lg" variant="outline" className="hover-scale">
-            전체 디자인 보기
+            전체 컬렉션 보기
           </Button>
         </motion.div>
       </div>

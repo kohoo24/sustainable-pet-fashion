@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Toaster } from "@/components/ui/toaster";
-import { Analytics } from "@vercel/analytics/react";
+import { Providers } from "@/components/providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "에코펫 - 지속 가능한 반려동물 패션",
-  description: "환경을 생각하는 친환경 반려동물 패션 브랜드",
+  title: "EcoPet Fashion",
+  description: "Sustainable Pet Fashion",
 };
 
 export default function RootLayout({
@@ -18,18 +16,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ko" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-          <Toaster />
-        </ThemeProvider>
-        <Analytics />
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

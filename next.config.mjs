@@ -14,6 +14,7 @@ const nextConfig = {
         hostname: "**",
       },
     ],
+    domains: ['picsum.photos'],
   },
   experimental: {
     optimizePackageImports: ["@radix-ui/react-icons"],

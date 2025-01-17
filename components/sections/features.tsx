@@ -1,72 +1,84 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Leaf, Recycle, Heart, Sparkles } from "lucide-react";
+import { LeafIcon, RecycleIcon, ScissorsIcon } from "lucide-react";
 
 const features = [
   {
-    icon: <Leaf className="h-8 w-8" />,
+    icon: <RecycleIcon className="w-8 h-8" />,
     title: "친환경 소재",
-    description:
-      "모든 제품은 지속 가능한 재활용 소재로 만들어져 환경 영향을 최소화합니다.",
+    description: "재활용 원단과 지속 가능한 소재만을 엄선하여 사용합니다",
   },
   {
-    icon: <Recycle className="h-8 w-8" />,
-    title: "지속 가능한 생산",
-    description:
-      "폐기물과 에너지 소비를 최소화하는 친환경적인 생산 과정을 채택했습니다.",
+    icon: <ScissorsIcon className="w-8 h-8" />,
+    title: "맞춤 제작",
+    description: "반려동물의 체형과 특성을 고려한 완벽한 핏을 제공합니다",
   },
   {
-    icon: <Heart className="h-8 w-8" />,
-    title: "반려동물 편안함",
-    description:
-      "신중하게 선택된 소재와 인체공학적 디자인으로 반려동물의 편안함을 최우선으로 생각합니다.",
-  },
-  {
-    icon: <Sparkles className="h-8 w-8" />,
-    title: "스타일리시한 디자인",
-    description:
-      "트렌디하고 세련된 디자인으로 반려동물의 개성을 돋보이게 합니다.",
+    icon: <LeafIcon className="w-8 h-8" />,
+    title: "제로 웨이스트",
+    description: "생산 과정에서 발생하는 모든 자투리를 재활용합니다",
   },
 ];
 
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 },
+};
+
 const Features = () => {
   return (
-    <section id="features" className="py-20 bg-muted/50">
-      <div className="container mx-auto px-4">
+    <section className="section-padding bg-secondary/20">
+      <div className="container mx-auto container-padding">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-2xl mx-auto mb-16"
         >
-          <h2 className="text-4xl font-bold mb-4 gradient-text">
-            에코펫의 특별함
+          <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-primary/10 text-primary font-medium">
+            🌟 특별한 가치
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-text">
+            지속 가능한 가치 실현
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            지속 가능성과 스타일을 결합하여 반려동물을 위한
-            <br />
-            완벽한 패션을 만들어냅니다.
+          <p className="text-muted-foreground text-lg">
+            환경을 생각하는 제작 방식으로 더 나은 미래를 만들어갑니다
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid md:grid-cols-3 gap-8"
+        >
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="p-6 bg-card rounded-lg shadow-lg hover:shadow-xl transition-shadow card-shadow"
+              variants={item}
+              className="glass-card p-8 text-center group hover-scale"
             >
-              <div className="mb-4 text-primary">{feature.icon}</div>
-              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+              <div className="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                {feature.icon}
+              </div>
+              <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
               <p className="text-muted-foreground">{feature.description}</p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

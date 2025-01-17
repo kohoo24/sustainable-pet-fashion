@@ -2,49 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: 0 0% 100%;
-  --foreground: 142 72% 29%;
-  --card: 0 0% 100%;
-  --card-foreground: 142 72% 29%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 142 72% 29%;
-  --primary: 142 72% 29%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 142 44% 96%;
-  --secondary-foreground: 142 72% 29%;
-  --muted: 142 44% 96%;
-  --muted-foreground: 142 30% 45%;
-  --accent: 142 44% 96%;
-  --accent-foreground: 142 72% 29%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 100%;
-  --border: 142 12% 92%;
-  --input: 142 12% 92%;
-  --ring: 142 72% 29%;
-  --radius: 1rem;
-}
-
-.dark {
-  --background: 142 50% 8%;
-  --foreground: 0 0% 100%;
-  --card: 142 50% 8%;
-  --card-foreground: 0 0% 100%;
-  --popover: 142 50% 8%;
-  --popover-foreground: 0 0% 100%;
-  --primary: 142 72% 29%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 142 32% 15%;
-  --secondary-foreground: 0 0% 100%;
-  --muted: 142 32% 15%;
-  --muted-foreground: 142 15% 65%;
-  --accent: 142 32% 15%;
-  --accent-foreground: 0 0% 100%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 100%;
-  --border: 142 32% 15%;
-  --input: 142 32% 15%;
-  --ring: 142 72% 29%;
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 142.1 76.2% 36.3%;
+    --primary-foreground: 355.7 100% 97.3%;
+    --secondary: 145 80% 95.9%;
+    --secondary-foreground: 144.9 80.4% 10%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 145 80% 95.9%;
+    --accent-foreground: 144.9 80.4% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 142.1 76.2% 36.3%;
+    --radius: 0.75rem;
+  }
+ 
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 142.1 70.6% 45.3%;
+    --primary-foreground: 144.9 80.4% 10%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 142.1 70.6% 45.3%;
+  }
 }
 
 * {
@@ -63,18 +65,23 @@ body {
 }
 
 .gradient-text {
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  background-image: linear-gradient(to right, hsl(var(--primary)), #22c55e);
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-green-600;
 }
 
 .hover-scale {
-  transition: transform 0.3s;
+  @apply transition-transform duration-300 hover:scale-105;
 }
 
-.hover-scale:hover {
-  transform: scale(1.05);
+.glass-card {
+  @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-xl;
+}
+
+.section-padding {
+  @apply py-20 md:py-32;
+}
+
+.container-padding {
+  @apply px-4 md:px-8;
 }
 
 .card-shadow {
@@ -100,4 +107,42 @@ body {
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
+}
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(20, 184, 166, 0.5) !important;
+  box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.2) !important;
+}
+
+.glass-button {
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+.glass-button:hover {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(20, 184, 166, 0.5) !important;
+  transform: translateY(-1px) !important;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
 }
