@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 142 72% 29%;
+  --card: 0 0% 100%;
+  --card-foreground: 142 72% 29%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 142 72% 29%;
+  --primary: 142 72% 29%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 142 44% 96%;
+  --secondary-foreground: 142 72% 29%;
+  --muted: 142 44% 96%;
+  --muted-foreground: 142 30% 45%;
+  --accent: 142 44% 96%;
+  --accent-foreground: 142 72% 29%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 142 12% 92%;
+  --input: 142 12% 92%;
+  --ring: 142 72% 29%;
+  --radius: 1rem;
+}
+
+.dark {
+  --background: 142 50% 8%;
+  --foreground: 0 0% 100%;
+  --card: 142 50% 8%;
+  --card-foreground: 0 0% 100%;
+  --popover: 142 50% 8%;
+  --popover-foreground: 0 0% 100%;
+  --primary: 142 72% 29%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 142 32% 15%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 142 32% 15%;
+  --muted-foreground: 142 15% 65%;
+  --accent: 142 32% 15%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 142 32% 15%;
+  --input: 142 32% 15%;
+  --ring: 142 72% 29%;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gradient-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, hsl(var(--primary)), #22c55e);
+}
+
+.hover-scale {
+  transition: transform 0.3s;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.card-shadow {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+}
+
+.card-shadow:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
