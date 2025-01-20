@@ -1,4 +1,4 @@
-package site.echopet.backend.global.utils.encrypt;
+package site.echopet.backend.global.encrypt;
 
 import java.security.Key;
 import java.security.KeyFactory;
@@ -20,16 +20,24 @@ public class RSAUtils {
     return Base64.getEncoder().encodeToString(key.getEncoded());
   }
 
-  public static PrivateKey stringToPrivateKey(String keyString) throws Exception {
-    byte[] keyBytes = Base64.getDecoder().decode(keyString);
-    PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyBytes);
-    return (PrivateKey) stringToKey(keySpec);
+  public static PrivateKey stringToPrivateKey(String keyString) {
+    try {
+      byte[] keyBytes = Base64.getDecoder().decode(keyString);
+      PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyBytes);
+      return (PrivateKey) stringToKey(keySpec);
+    } catch (Exception e) {
+      throw new RuntimeException();
+    }
   }
 
-  public static PublicKey stringToPublicKey(String keyString) throws Exception {
-    byte[] keyBytes = Base64.getDecoder().decode(keyString);
-    X509EncodedKeySpec keySpec = new X509EncodedKeySpec(keyBytes);
-    return (PublicKey) stringToKey(keySpec);
+  public static PublicKey stringToPublicKey(String keyString) {
+    try {
+      byte[] keyBytes = Base64.getDecoder().decode(keyString);
+      X509EncodedKeySpec keySpec = new X509EncodedKeySpec(keyBytes);
+      return (PublicKey) stringToKey(keySpec);
+    } catch (Exception e) {
+      throw new RuntimeException();
+    }
   }
 
   private static Key stringToKey(EncodedKeySpec keySpec) throws Exception {

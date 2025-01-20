@@ -1,4 +1,4 @@
-package site.echopet.backend.global.utils.encrypt;
+package site.echopet.backend.global.encrypt;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;

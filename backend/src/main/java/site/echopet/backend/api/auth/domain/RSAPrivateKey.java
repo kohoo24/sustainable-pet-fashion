@@ -3,7 +3,7 @@ package site.echopet.backend.api.auth.domain;
 import java.security.PrivateKey;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import site.echopet.backend.global.utils.encrypt.RSAUtils;
+import site.echopet.backend.global.encrypt.RSAUtils;
 
 @Getter
 @NoArgsConstructor
