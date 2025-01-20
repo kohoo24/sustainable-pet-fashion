@@ -20,6 +20,7 @@ import site.echopet.backend.api.auth.domain.RSAPrivateKey;
 import site.echopet.backend.global.encrypt.RSADecryptor;
 import site.echopet.backend.global.encrypt.RSAUtils;
 import site.echopet.backend.global.redis.RSAKeyClient;
+import site.echopet.backend.global.security.handler.LoginFailureHandler;
 import site.echopet.backend.global.security.handler.LoginSuccessHandler;
 import site.echopet.backend.global.utils.JSONUtils;
 
@@ -35,10 +36,11 @@ public class JSONUsernamePasswordAuthenticationFilter extends AbstractAuthentica
   private final RSAKeyClient keyClient;
 
   protected JSONUsernamePasswordAuthenticationFilter(AuthenticationManager authenticationManager,
-      LoginSuccessHandler loginSuccessHandler, JSONUtils jsonUtils,
-      RSAKeyClient keyClient) {
+      LoginSuccessHandler loginSuccessHandler, LoginFailureHandler loginFailureHandler,
+      JSONUtils jsonUtils, RSAKeyClient keyClient) {
     super(LOGIN_REQUEST_MATCHER, authenticationManager);
     setAuthenticationSuccessHandler(loginSuccessHandler);
+    setAuthenticationFailureHandler(loginFailureHandler);
     this.jsonUtils = jsonUtils;
     this.keyClient = keyClient;
   }

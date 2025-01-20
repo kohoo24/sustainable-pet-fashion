@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import site.echopet.backend.global.security.filter.JSONUsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -26,7 +27,8 @@ public class SecurityConfig {
     http.sessionManagement(config ->
         config.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
-    http.addFilterBefore(filterConfig.getUsernamePasswordAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+    http.addFilterBefore(filterConfig.getUsernamePasswordAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+        .addFilterBefore(filterConfig.getJwtAuthenticationFilter(), JSONUsernamePasswordAuthenticationFilter.class);
 
     return http.build();
   }
