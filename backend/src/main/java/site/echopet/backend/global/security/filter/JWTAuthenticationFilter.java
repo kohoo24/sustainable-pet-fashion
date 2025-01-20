@@ -24,6 +24,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
   private final TokenService tokenService;
   private final PathMatcher pathMatcher = new AntPathMatcher();
   private final List<EndPoint> tokenFreeEndPoints = List.of(
+      new EndPoint("/api/auth/rsa-key", HttpMethod.GET),
       new EndPoint("/api/auth/register", HttpMethod.POST),
       new EndPoint("/api/auth/login", HttpMethod.POST),
       new EndPoint("/api/designs/**", HttpMethod.GET)
