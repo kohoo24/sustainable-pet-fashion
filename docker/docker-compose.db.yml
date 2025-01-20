@@ -1,0 +1,37 @@
+name: project_echopet
+services:
+  mysql:
+    container_name: echo_mysql
+    image: mysql:8.0.34
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root1234'
+      MYSQL_DATABASE: 'echopet'
+      MYSQL_USER: 'echo'
+      MYSQL_PASSWORD: '1234'
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql_volume:/var/lib/mysql
+    networks:
+      - echo-network
+
+  redis:
+    container_name: echo_redis
+    image: redis:latest
+    environment:
+      - REDIS_PASSWORD=1234
+    command: redis-server --requirepass 1234
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_volume:/data
+    networks:
+      - echo-network
+
+volumes:
+  mysql_volume:
+  redis_volume:
+
+networks:
+  echo-network:
+    external: true
